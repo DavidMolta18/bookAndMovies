@@ -71,7 +71,28 @@ public class Shop {
 	 * informando que el producto ya existe. 
 	 */
 	public String addProduct(String code,String name, int units, double price, ProductType type) {
-		return "";
+
+		String out="";
+		boolean noenter = false;
+		
+
+		for (int i=0;i<catalog.size();i++){
+
+			if(catalog.get(i).getCode()==code){
+
+				out="There's a product with the same information";
+				noenter=true;
+			}
+
+		}
+
+		if (noenter==false){
+			ProductForSale objSale = new ProductForSale(code,name,units,price,type);
+			catalog.add(objSale);
+			out="The product was added";
+		}
+
+		return out;
 	}
 	
 
@@ -89,7 +110,33 @@ public class Shop {
 	 * informando que el producto ya existe. 
 	 */
 	public String addProduct(String code, String name, double price, ProductType type) {
-		return "";
+
+
+		String out="";
+		boolean noenter = false;
+		
+
+		for (int i=0;i<catalog.size();i++){
+
+			if(catalog.get(i).getCode()==code){
+
+				out="There's a product with the same information";
+				noenter=true;
+			}
+
+		}
+
+		if (noenter==false){
+			ProductForRent objRent = new ProductForRent(code,name,price,type);
+			objRent.setState(State.AVAILABLE);
+			catalog.add(objRent);
+			out="The product was added";
+		}
+
+		return out;
+
+
+		
 	}
 	
 	/**
@@ -98,6 +145,15 @@ public class Shop {
 	 * @return cadena con la informacion de los productos
 	 */
 	public String showCatalog() {
+		String out="";
+		for (int i=0;i<catalog.size();i++){
+
+			out+=catalog.get(i).getInformation();
+			out+="\n";
+
+
+
+		}
 		return "";
 	}
 	
