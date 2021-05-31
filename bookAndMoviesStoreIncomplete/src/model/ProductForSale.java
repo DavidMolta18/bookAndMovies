@@ -77,6 +77,7 @@ public class ProductForSale extends Product implements Saleable {
 		if (units>0 && units<=getUnits()){
 
 			available=true;
+			setUnits(getUnits()-units);
 		}
 
 

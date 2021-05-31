@@ -81,7 +81,7 @@ public class Shop {
 
 			if(catalog.get(i).getCode().equalsIgnoreCase(code)){
 
-				out="There's a product with the same information";
+				out="There's a product with the same code";
 				noenter=true;
 			}
 
@@ -121,7 +121,7 @@ public class Shop {
 
 			if(catalog.get(i).getCode().equalsIgnoreCase(code)){
 
-				out="There's a product with the same information";
+				out="There's a product with the same code";
 				noenter=true;
 			}
 
@@ -260,12 +260,15 @@ public class Shop {
 		String out= "";
 		double price=0;
 
-		if(p.isSafeSale(units)){
 
+		if(p.isSafeSale(units)){
+			
 			price= p.getSalePrice(units);
 			price = p.applyExtraDiscount(price,discount);
 			price= p.calculateTax(price,TAX_IVA);
-			totalSales++;
+			
+			
+			totalSales+=price;
 			out= "You selled the product with a price of: " + price;
 		}else {
 			out="There is no product available";
@@ -307,7 +310,7 @@ public class Shop {
 
 			price= p.getRentPrice(days);
 			p.rentProduct(days);
-
+			totalRents+=price;
 			out="The product was succesfully rented" + "the total price is: " + price;
 
 
