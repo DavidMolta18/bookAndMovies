@@ -129,8 +129,6 @@ public class Shop {
 
 		if (!noenter){
 			ProductForRent objRent = new ProductForRent(code,name,price,type);
-			objRent.setState(State.AVAILABLE);
-			objRent.LocalDate.of(2021, 05, 28);
 			catalog.add(objRent);
 			out="The product was added";
 		}

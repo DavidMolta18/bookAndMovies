@@ -8,28 +8,22 @@ public class ProductForRent extends Product implements Rentable {
 	private State state;
 
 
-	public void setState(State state){
 
-		this.state=state;
-	}
-
-	public State getState(){
-		return state;
-	}
 
 	public ProductForRent (String code, String name,double price, ProductType type) {
 
 		super(code,name,1,price,type);
+		state=State.AVAILABLE;
+		devolutionDate=LocalDate.of(2021, 05, 28);
 
 	}
 
 
 
 	public void rentProduct (int amountDays) {
-
-		setState(State.RENTED);
-		long i = amountDays;
-		devolutionDate.plusDays(i);
+		state= State.RENTED;
+	
+		devolutionDate=devolutionDate.plusDays(amountDays);
 		
 
 	}
@@ -72,6 +66,7 @@ public class ProductForRent extends Product implements Rentable {
 
 		if(state==State.AVAILABLE){
 			available=true;
+
 
 		}
 
