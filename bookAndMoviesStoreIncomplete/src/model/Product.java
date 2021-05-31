@@ -20,7 +20,7 @@ public abstract class Product {
 	/**
 	 * Unidades disponibles
 	 */
-	private int units;
+	protected int units;
 	
 	/**
 	 * Precio, que puede ser de alquiler o de venta

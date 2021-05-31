@@ -268,6 +268,7 @@ public class Shop {
 			price= p.calculateTax(price,TAX_IVA);
 			
 			
+			
 			totalSales+=price;
 			out= "You selled the product with a price of: " + price;
 		}else {
@@ -311,6 +312,7 @@ public class Shop {
 			price= p.getRentPrice(days);
 			p.rentProduct(days);
 			totalRents+=price;
+
 			out="The product was succesfully rented" + "the total price is: " + price;
 
 
