@@ -22,21 +22,25 @@ public class ProductForSale extends Product implements Saleable {
 
 	@Override
 	public double applyExtraDiscount(double subtotal, double percenteageDiscount){
-		double extra=0;
-		return extra;
+		double finalPrice=0;
+		finalPrice=subtotal - (percenteageDiscount*subtotal);
+		return finalPrice;
 	}
 
 	@Override
 	public double calculateTax (double totalPrice, double percenteage) {
-		double c=0;
+		double finalPrice;
+		finalPrice= totalPrice + (totalPrice*percenteage);
 
-
-		return c;
+		return finalPrice;
 
 	}
+
 	@Override
 	public double getSalePrice (int units) {
 		double d=0;
+
+		d= getPrice()*units - discount;
 
 		return d;
 	}
@@ -67,10 +71,16 @@ public class ProductForSale extends Product implements Saleable {
 	@Override
 	public boolean isSafeSale (int units){
 
-		boolean x=true;
+		boolean available=false;
 
 
-		return x;
+		if (units>0){
+
+			available=true;
+		}
+
+
+		return available;
 
 	}
 

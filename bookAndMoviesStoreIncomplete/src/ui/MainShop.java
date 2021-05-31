@@ -148,20 +148,20 @@ public class MainShop {
 			System.out.println("Please select the type of the product: \n1:BOOK \n2: MAGAZINE \n3: DVD_MOVIE \n4: DOWNLOAD_MOVIE ");
 			int type = sc.nextInt();
 			if (type==1){
-				shop.addProduct(code,name,units,price,ProductType.BOOK);
+				System.out.println(shop.addProduct(code,name,units,price,ProductType.BOOK));
 			}else if(type==2){
-				shop.addProduct(code,name,units,price,ProductType.MAGAZINE);
+				System.out.println(shop.addProduct(code,name,units,price,ProductType.MAGAZINE));
 
 			}else if (type==3){
-				shop.addProduct(code,name,units,price,ProductType.DVD_MOVIE);
+				System.out.println(shop.addProduct(code,name,units,price,ProductType.DVD_MOVIE));
 
 			}else if (type==4){
-				shop.addProduct(code,name,units,price,ProductType.DOWNLOAD_MOVIE);
+				System.out.println(shop.addProduct(code,name,units,price,ProductType.DOWNLOAD_MOVIE));
 
 			}else System.out.println("Incorrect type");
 
 
-		}else if (option==1){
+		}else if (option==2){
 			System.out.println("Enter the code of the product please: ");
 			String code= sc.nextLine();
 			System.out.println("Enter the name of the product please: ");
@@ -171,15 +171,15 @@ public class MainShop {
 			System.out.println("Please select the type of the product: \n1:BOOK \n2: MAGAZINE \n3: DVD_MOVIE \n4: DOWNLOAD_MOVIE ");
 			int type = sc.nextInt();
 			if (type==1){
-				shop.addProduct(code,name,price,ProductType.BOOK);
+				System.out.println(shop.addProduct(code,name,price,ProductType.BOOK));
 			}else if(type==2){
-				shop.addProduct(code,name,price,ProductType.MAGAZINE);
+				System.out.println(shop.addProduct(code,name,price,ProductType.MAGAZINE));
 
 			}else if (type==3){
-				shop.addProduct(code,name,price,ProductType.DVD_MOVIE);
+				System.out.println(shop.addProduct(code,name,price,ProductType.DVD_MOVIE));
 
 			}else if (type==4){
-				shop.addProduct(code,name,price,ProductType.DOWNLOAD_MOVIE);
+				System.out.println(shop.addProduct(code,name,price,ProductType.DOWNLOAD_MOVIE));
 
 			}else System.out.println("Incorrect type");
 

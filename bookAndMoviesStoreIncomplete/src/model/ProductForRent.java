@@ -13,6 +13,10 @@ public class ProductForRent extends Product implements Rentable {
 		this.state=state;
 	}
 
+	public State getState(){
+		return state;
+	}
+
 	public ProductForRent (String code, String name,double price, ProductType type) {
 
 		super(code,name,1,price,type);
@@ -23,9 +27,9 @@ public class ProductForRent extends Product implements Rentable {
 
 	public void rentProduct (int amountDays) {
 
-		String a;
-
-
+		setState(State.RENTED);
+		long i = amountDays;
+		devolutionDate.plusDays(i);
 		
 
 	}
@@ -64,10 +68,16 @@ public class ProductForRent extends Product implements Rentable {
 	@Override
 	public boolean isSafeRent (){
 
-		boolean x=true;
+		boolean available=false;
+
+		if(state==State.AVAILABLE){
+			available=true;
+
+		}
 
 
-		return x;
+
+		return available;
 
 	}
 

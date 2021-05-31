@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Date;
 
+
 /**
  * 
  * @author angievig
@@ -76,9 +77,9 @@ public class Shop {
 		boolean noenter = false;
 		
 
-		for (int i=0;i<catalog.size();i++){
+		for (int i=0;!noenter && i<catalog.size();i++){
 
-			if(catalog.get(i).getCode()==code){
+			if(catalog.get(i).getCode().equalsIgnoreCase(code)){
 
 				out="There's a product with the same information";
 				noenter=true;
@@ -86,7 +87,7 @@ public class Shop {
 
 		}
 
-		if (noenter==false){
+		if (!noenter){
 			ProductForSale objSale = new ProductForSale(code,name,units,price,type);
 			catalog.add(objSale);
 			out="The product was added";
@@ -118,7 +119,7 @@ public class Shop {
 
 		for (int i=0;i<catalog.size();i++){
 
-			if(catalog.get(i).getCode()==code){
+			if(catalog.get(i).getCode().equalsIgnoreCase(code)){
 
 				out="There's a product with the same information";
 				noenter=true;
@@ -126,17 +127,16 @@ public class Shop {
 
 		}
 
-		if (noenter==false){
+		if (!noenter){
 			ProductForRent objRent = new ProductForRent(code,name,price,type);
 			objRent.setState(State.AVAILABLE);
+			objRent.LocalDate.of(2021, 05, 28);
 			catalog.add(objRent);
 			out="The product was added";
 		}
 
 		return out;
-
-
-		
+	
 	}
 	
 	/**
@@ -154,7 +154,7 @@ public class Shop {
 
 
 		}
-		return "";
+		return out;
 	}
 	
 	/**
@@ -167,7 +167,19 @@ public class Shop {
 	 * no contiene un producto con ese código
 	 */
 	public Product findProduct(String code) {
+		
 		Product p=null;
+
+		for(int i=0;i<catalog.size();i++){
+
+			if (catalog.get(i).getCode().equalsIgnoreCase(code)){
+
+				p= catalog.get(i);
+
+			}
+
+
+		}
 		
 		return p;
 	}
@@ -247,21 +259,34 @@ public class Shop {
 	 * @return un mensaje con el resultado de la venta
 	 */
 	private  String sale(Saleable p, int units, double discount) {
-		
+		String out= "";
+		double price=0;
+
+		if(p.isSafeSale(units)){
+
+			price= p.getSalePrice(units);
+			price = p.applyExtraDiscount(price,discount);
+			price= p.calculateTax(price,TAX_IVA);
+			totalSales++;
+			out= "You selled the product with a price of: " + price;
+		}else {
+			out="There is no product available";
+		}
 		/*
 		 * Para hacer una venta
 		 * 1. Se verifica si es seguro vender, es decir, si
 		 * hay suficientes unidades para vender
 		 * si es seguro: 
-		 * 	2. se calcula el precio de la venta 
-		 * 	3. se aplica el descuento extra
-		 * 	4. se calcula el monto de los impuestos
+		 * 	2. se calcula el precio de la venta //
+		 * 	3. se aplica el descuento extra//
+		 * 	4. se calcula el monto de los impuestos //
 		 * 	5. Se calcula el total a pagar y se incrementa el total de ventas
 		 * 	6. Se retorna un mensaje con el total a pagar y confirmando la venta
 		 * si no: 
 		 *  - Se muestra un mensaje reportando el error.
 		 */
-		return "";
+
+		return out;
 		
 	}
 	
@@ -277,9 +302,22 @@ public class Shop {
 	 * @return un mensaje con el resultado del alquiler
 	 */
 	private  String rent(Rentable p, int days) {
+		String out="";
+		double price=0;
+
+		if(p.isSafeRent()){
+
+			price= p.getRentPrice(days);
+			p.rentProduct(days);
+
+			out="The product was succesfully rented" + "the total price is: " + price;
+
+
+
+		}else out="Product not available";
 		/*
 		 * Para hacer una venta
-		 * 1. Se verifica si es eguro alquilar, es decir si el producto 
+		 * 1. Se verifica si es seguro alquilar, es decir si el producto 
 		 * está disponible
 		 * si es seguro: 
 		 * 	2. se calcula el precio del alquiler
@@ -289,7 +327,8 @@ public class Shop {
 		 * si no: 
 		 *  - Se muestra un mensaje reportando el error.
 		 */
-		return"";
+
+		return out;
 	}
 	
 
