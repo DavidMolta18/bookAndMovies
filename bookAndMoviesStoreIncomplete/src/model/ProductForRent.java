@@ -30,6 +30,7 @@ public class ProductForRent extends Product implements Rentable {
 
 	@Override 
 	public double getRentPrice(int amountDays){
+		
 		double totalprice = amountDays*price;
 		return totalprice;
 	}
