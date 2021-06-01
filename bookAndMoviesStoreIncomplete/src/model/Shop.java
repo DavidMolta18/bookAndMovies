@@ -122,6 +122,7 @@ public class Shop {
 			if(catalog.get(i).getCode().equalsIgnoreCase(code)){
 
 				out="There's a product with the same code";
+				
 				noenter=true;
 			}
 
